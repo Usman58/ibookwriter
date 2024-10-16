@@ -1,0 +1,150 @@
+<app-header></app-header>
+<div class="agent-page-main-content">
+    <div
+      class="create-user console-body-wrapper footerheight"
+      data-scrollbar="true"
+      tabindex="-1"
+      style="overflow-y: scroll; height: 80vh; position: relative"
+    >
+      <div class="scroll-content">
+        <div class="wider-container">
+          <div class="tab-body">
+            <div class="tab-content" id="nav-tabContent">
+              <div
+                id="user-detail"
+                class="tab-pane fade active show"
+                role="tabpanel"
+                aria-labelledby="user-tab"
+              >
+              <div class="row">
+                <div class="col-lg-8">
+                  <div class="team-detail-form-box mb-5">
+                    <form [formGroup]="form" class="user-detail-form">
+                      <div class="mb-3">
+                        <label for="first-Name">Title</label>
+                        <input
+                          [class.is-invalid]="fC['title'].invalid && fC['title'].touched"
+                          [class.is-valid]="fC['title'].valid && fC['title'].touched"
+                          class="form-control"
+                          id="title"
+                          placeholder="Enter title"
+                          formControlName="title"
+                        />
+                        <div class="invalid-feedback">
+                          <div *ngIf="fC['title'].errors?.['required']">
+                            Title is required.
+                          </div>
+                        </div>
+                        <div class="valid-feedback">Looks good!</div>
+                      </div>
+                      <div class="mb-3">
+                        <label for="first-Description">Document</label>
+                        <div id="editor">
+                          <quill-editor
+                            [styles]="{ height: '200px' }"
+                            formControlName="document"
+                            (onEditorCreated)="onEditorCreated($event)"
+                            (onSelectionChanged)="getSelectedText()"
+                          ></quill-editor>
+                        </div>
+                        <div class="invalid-feedback">
+                          <div *ngIf="fC['document'].errors?.['required']">
+                            Document is required.
+                          </div>
+                        </div>
+                        <div class="valid-feedback">Looks good!</div>
+                      </div>
+                    </form>
+                  </div>
+                </div>
+              
+              
+                <div class="col-lg-4">
+                  <div class="container mt-5">
+                    <div class="row justify-content-center">
+                      <div class="col-md-12">
+                       
+                        <div *ngIf="wordData" class="card word-card">
+                          <div class="card-body">
+                            <h5 class="card-title">{{ wordData.word }}</h5>
+                            <h6 class="card-subtitle mb-2 text-muted">{{ wordData.phonetic || wordData.phonetics[0]?.text }}</h6>
+              
+                            <div *ngFor="let meaning of wordData.meanings" class="mb-3">
+                              <p class="card-text">
+                                <strong>{{ meaning.partOfSpeech }}</strong>
+                              </p>
+                              <ol>
+                                <li *ngFor="let definition of meaning.definitions">
+                                  {{ definition.definition }}
+                                </li>
+                              </ol>
+              
+                             
+                              <div *ngIf="meaning.synonyms.length">
+                                <strong>Synonyms:</strong> {{ meaning.synonyms.join(', ') }}
+                              </div>
+              
+                            
+                              <div *ngIf="meaning.antonyms.length">
+                                <strong>Antonyms:</strong> {{ meaning.antonyms.join(', ') }}
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="scrollbar-track scrollbar-track-x" style="display: none">
+        <div
+          class="scrollbar-thumb scrollbar-thumb-x"
+          style="width: 1638px; transform: translate3d(0px, 0px, 0px)"
+        ></div>
+      </div>
+      <div class="scrollbar-track scrollbar-track-y" style="display: block"></div>
+    </div>
+    <footer class="footer">
+      <div class="ps-3 pe-3">
+        <div
+          class="icon-buttons-wrapper d-flex justify-content-between pt-3 pb-4"
+        >
+          <div class="row w-100">
+            <div class="col-md-4"></div>
+            <div class="col-md-8 justify-content-end d-flex">
+              <div class="buttons-wrap d-flex">
+                <button
+                  type="button"
+                  class="btn btn-outline-secondary btn-medium me-2 px-4"
+                  [routerLink]="['/projects']"
+                >
+                  Back
+                </button>
+                <button
+                  type="button"
+                  class="btn btn-success ms-e f-saveBtn btn-large d-none"
+                ></button>
+                <button
+                  type="button"
+                  class="btn skyBg ms-2 px-4 btn-medium saveBtn"
+                  data-bs-toggle="modal"
+                  data-bs-target=""
+                  [class.disabled]="form.invalid"
+                  (click)="submit()"
+                >
+          
+                Save
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </footer>
+  </div>

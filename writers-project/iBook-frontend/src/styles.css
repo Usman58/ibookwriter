@@ -1,0 +1,44 @@
+/* @import "~@ng-select/ng-select/themes/default.theme.css"; */
+@import '~quill/dist/quill.core.css';
+@import '~quill/dist/quill.snow.css';
+@import "./assets/CSS/main-4506c4be4c.css";
+@import "./assets/CSS/toast.css";
+::-webkit-scrollbar {
+  width: 5px;
+  height: 5px;
+}
+
+::-webkit-scrollbar-track {
+  background: #fff;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #fff;
+  border-radius: 15px !important;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #eee;
+}
+
+.query-container {
+  height: calc(100vh - 290px);
+}
+.search_field input {
+  min-width: 160px;
+}
+.hierarchy .tooltip-inner {
+  min-width: 160px;
+}
+.hierarchy {
+  padding-left: 56px !important;
+}
+.offcanvas {
+  width: 40% !important;
+}
+.warningbg {
+  background-color: #ffcc00; /* Set the background color to yellow for the warning status */
+  color: black; /* Set the text color for contrast */
+  /* Add any other desired styles for the warning status */
+}
+

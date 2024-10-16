@@ -1,0 +1,75 @@
+<div id="signupWrapper">
+  <div class="main-body">
+    <div class="login-form main-login-form agentExtensionWrapper">
+      <h4>Glad to see you again!</h4>
+      <h6 class="coal mb-5">Login with your credentials</h6>
+      <div class="form w-100">
+        <form [formGroup]="loginForm" (submit)="onSubmit()">
+          <div class="form-floating mb-2">
+            <input
+              class="form-control"
+              [class.is-invalid]="
+                lF['username'].invalid && lF['username'].touched
+              "
+              [class.is-valid]="lF['username'].valid && lF['username'].touched"
+              id="register-username"
+              formControlName="username"
+            />
+            <label for="register-username">username </label>
+            <div class="invalid-feedback">Please enter a username</div>
+            <div class="valid-feedback">Looks good!</div>
+          </div>
+          <div class="form-floating mb-3">
+            <input
+              [type]="show ? 'text' : 'password'"
+              class="form-control"
+              [class.is-invalid]="
+                lF['password'].invalid && lF['password'].touched
+              "
+              [class.is-valid]="lF['password'].valid && lF['password'].touched"
+              id="floatingInputPassword"
+              formControlName="password"
+            />
+            <i
+              style="float: right; margin-top: -30px; margin-right: 30px"
+              [class]="show ? 'fa fa-eye' : 'fa fa-eye-slash'"
+              (click)="password()"
+            ></i>
+            <label for="floatingInputPassword">Password</label>
+            <div class="invalid-feedback">Please enter a Password</div>
+            <div class="valid-feedback">Looks good!</div>
+          </div>
+          <div class="form-btn">
+            <button
+              type="submit"
+              [class.disabled]="loginForm.invalid"
+              class="w-100 btn loginbtn"
+              id="loginBtn"
+              tabindex="-1"
+              role="button"
+              style="color: #fff"
+            >
+              Login
+            </button>
+          </div>
+        </form>
+
+        <div class="col-12 d-flex justify-content-between mb-4">
+        </div>
+
+        <div class="dropdown-center another-account-accordion d-none">
+          <button
+            class="btn btn-secondary dropdown-toggle"
+            type="button"
+            data-bs-toggle="dropdown"
+            aria-expanded="false"
+          >
+            <i class="fa-light fa-circle-user pe-3"></i>
+            Use Another Accont
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
